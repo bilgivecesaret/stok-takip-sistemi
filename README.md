@@ -344,7 +344,3 @@ API istekleri başarısız olduğunda:
 3. İstek gövdesinin geçerli JSON biçiminde olduğunu kontrol edin.
 4. HTTP durum kodunu ve backend terminalindeki hata mesajlarını inceleyin.
 5. Frontend üzerinden yapılan isteklerde CORS yapılandırmasını kontrol edin.
-
-## Lisans
-
-Bu proje için bir lisans belirlenmişse lisans bilgilerini bu bölümde belirtin.
