@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Muhasebe | Stok Takip Sistemi</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+
+    <script src="../js/api.js" defer></script>
+    <script src="../js/accounting.js" defer></script>
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="space">
+            <h1>Muhasebe</h1>
+            <p>Satış kayıtlarını ve kâr hesaplamalarını görüntüleyin.</p>
+            <nav>
+                <a href="../index.html" style="color: white;">&larr; Ana Sayfaya Dön</a>
+            </nav> 
+        </div>
+    </header>
+
+    <main class="space">
+
+        <section>
+            <h2>Satış Kayıtları</h2>
+
+            <p id="accounting-message" role="status" aria-live="polite"></p>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Sıra No</th>
+                            <th>Satış Tarihi</th>
+                            <th>Kategori</th>
+                            <th>Ürün Adı</th>
+                            <th>Satılan Miktar</th>
+                            <th>KDV Dâhil Birim Alış</th>
+                            <th>KDV Dâhil Birim Satış</th>
+                            <th>Toplam Kâr</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="accounting-list">
+                        <tr>
+                            <td colspan="8">Satış kayıtları yükleniyor...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section>
+            <h2>Kâr Özeti</h2>
+
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>Toplam Satış Adedi</label>
+                    <p id="total-quantity">0</p>
+                </div>
+
+                <div class="form-group">
+                    <label>Toplam Kâr</label>
+                    <p id="total-profit">0,00 TL</p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Yazıyla Toplam Kâr</label>
+                <p id="total-profit-words">SIFIR TÜRK LİRASI</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>Stok Takip Sistemi</p>
+    </footer>
+</body>
+</html>

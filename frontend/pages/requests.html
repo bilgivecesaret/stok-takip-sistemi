@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Ürün Talepleri | Stok Takip Sistemi</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+
+    <script src="../js/api.js" defer></script>
+    <script src="../js/requests.js" defer></script>
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="space">
+            <h1>Ürün Talepleri</h1>
+            <p>Yeni ürün talepleri oluşturun ve mevcut talepleri yönetin.</p>
+            <nav>
+                <a href="../index.html" style="color: white;">&larr; Ana Sayfaya Dön</a>
+            </nav> 
+        </div>
+    </header>
+
+    <main class="space">
+
+        <section>
+            <h2>Yeni Ürün Talebi</h2>
+
+            <p id="request-message" role="status" aria-live="polite"></p>
+
+            <form id="request-form">
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+                        <label for="category">Kategori</label>
+                        <input
+                            type="text"
+                            id="category"
+                            name="category"
+                            maxlength="100"
+                            required
+                            placeholder="Ör. Kırtasiye"
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="productName">Ürün Adı</label>
+                        <input
+                            type="text"
+                            id="productName"
+                            name="productName"
+                            maxlength="200"
+                            required
+                            placeholder="Ör. Tükenmez Kalem"
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="requestedQuantity">Talep Edilen Miktar</label>
+                        <input
+                            type="number"
+                            id="requestedQuantity"
+                            name="requestedQuantity"
+                            min="1"
+                            step="1"
+                            required
+                            placeholder="Ör. 50"
+                        >
+                    </div>
+
+                </div>
+
+                <div class="form-actions">
+                    <button
+                        type="submit"
+                        id="request-submit-button"
+                        class="btn btn-primary"
+                    >
+                        Talep Oluştur
+                    </button>
+
+                    <button
+                        type="reset"
+                        class="btn btn-secondary"
+                    >
+                        Formu Temizle
+                    </button>
+                </div>
+
+            </form>
+        </section>
+
+        <section>
+            <h2>Mevcut Ürün Talepleri</h2>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Sıra No</th>
+                            <th>Kategori</th>
+                            <th>Ürün Adı</th>
+                            <th>Talep Miktarı</th>
+                            <th>Talep Tarihi</th>
+                            <th>İşlem</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="request-list">
+                        <tr>
+                            <td colspan="6">Talepler yükleniyor...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>Stok Takip Sistemi</p>
+    </footer>
+
+</body>
+</html>

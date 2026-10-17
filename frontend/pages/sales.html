@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Satış İşlemleri | Stok Takip Sistemi</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+
+    <script src="../js/api.js" defer></script>
+    <script src="../js/sales.js" defer></script>
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="space">
+            <h1>Satış İşlemleri</h1>
+            <p>Ürünleri görüntüleyin ve satış işlemlerini gerçekleştirin.</p>
+            <nav>
+                <a href="../index.html" style="color: white;">&larr; Ana Sayfaya Dön</a>
+            </nav>            
+        </div>
+    </header>
+
+    <main class="space">
+
+        <section>
+            <h2>Ürün Listesi</h2>
+            <p id="sales-message" role="status" aria-live="polite"></p>
+        </section>
+
+        <section>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Sıra No</th>
+                            <th>Kategori</th>
+                            <th>Ürün Adı</th>
+                            <th>KDV Dâhil Satış Fiyatı</th>
+                            <th>Adet</th>
+                            <th>Toplam Tutar</th>
+                            <th>İşlem</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="sales-product-list">
+                        <tr>
+                            <td colspan="7">Ürünler yükleniyor...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section>
+            <h2>Satış Özeti</h2>
+
+            <p>
+                <strong>Seçilen ürün:</strong>
+                <span id="selected-product">Henüz ürün seçilmedi.</span>
+            </p>
+
+            <p>
+                <strong>Satış adeti:</strong>
+                <span id="selected-quantity">0</span>
+            </p>
+
+            <p>
+                <strong>Toplam satış tutarı:</strong>
+                <span id="selected-total">0,00 TL</span>
+            </p>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>Stok Takip Sistemi</p>
+    </footer>
+
+</body>
+</html>

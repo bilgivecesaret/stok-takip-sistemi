@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Stok Takip Sistemi</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/app.js" defer></script>
+</head>
+
+<body>
+    <header class="header">
+        <div class="container">
+            <h1>Stok Takip Sistemi</h1>
+            <p>Ürün ve stok yönetim paneli</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="welcome">
+            <h2>Yönetim Paneli</h2>
+            <p>İşlem yapmak istediğiniz modülü seçin.</p>
+        </section>
+
+        <section class="menu-grid">
+
+            <a href="pages/products.html" class="menu-card">
+                <h3>Ürün Yönetimi</h3>
+                <p>Ürün ekle, listele, güncelle ve sil.</p>
+            </a>
+
+            <a href="pages/sales.html" class="menu-card">
+                <h3>Satış İşlemleri</h3>
+                <p>Ürün satışı ve stok kontrolü yap.</p>
+            </a>
+
+            <a href="pages/requests.html" class="menu-card">
+                <h3>Ürün Talepleri</h3>
+                <p>Stokta olmayan ürünlerin taleplerini takip et.</p>
+            </a>
+
+            <a href="pages/accounting.html" class="menu-card">
+                <h3>Muhasebe</h3>
+                <p>Satışları ve kâr hesaplamalarını görüntüle.</p>
+            </a>
+
+        </section>
+
+        <section class="api-status">
+            <h3>Backend bağlantısı</h3>
+            <p id="api-status-message">Bağlantı kontrol ediliyor...</p>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>Stok Takip Sistemi</p>
+    </footer>
+</body>
+</html>

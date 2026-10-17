@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Ürün Yönetimi - Stok Takip Sistemi</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/api.js" defer></script>
+    <script src="../js/products.js" defer></script>
+</head>
+
+<body>
+    <header class="header">
+        <div class="container">
+            <h1>Ürün Yönetimi</h1>
+            <p>Ürün ekleme, listeleme, güncelleme ve silme işlemleri</p>
+            <nav>
+                <a href="../index.html" style="color: white;">&larr; Ana Sayfaya Dön</a>
+            </nav> 
+        </div>
+    </header>
+
+    <main class="container">
+
+        <!-- Ürün ekleme formu -->
+        <section class="welcome">
+            <h2>Yeni Ürün Ekle</h2>
+            <p id="form-message" role="status" aria-live="polite">Stok sistemine yeni bir ürün kaydedin.</p>
+        </section>
+
+        <section class="api-status">
+            <form id="product-form">
+
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="category">Kategori</label>
+                        <input
+                            type="text"
+                            id="category"
+                            name="category"
+                            maxlength="100"
+                            required
+                            placeholder="Örn. Elektronik">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="name">Ürün adı</label>
+                        <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            maxlength="200"
+                            required
+                            placeholder="Örn. Kablosuz Fare">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="stockQuantity">Stok miktarı</label>
+                        <input
+                            type="number"
+                            id="stockQuantity"
+                            name="stockQuantity"
+                            min="0"
+                            step="1"
+                            required
+                            value="0">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="purchasePrice">Alış fiyatı (TL)</label>
+                        <input
+                            type="number"
+                            id="purchasePrice"
+                            name="purchasePrice"
+                            min="0"
+                            step="0.01"
+                            required
+                            placeholder="0.00">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="salePrice">Satış fiyatı (TL)</label>
+                        <input
+                            type="number"
+                            id="salePrice"
+                            name="salePrice"
+                            min="0"
+                            step="0.01"
+                            required
+                            placeholder="0.00">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="vatRate">KDV oranı (%)</label>
+                        <input
+                            type="number"
+                            id="vatRate"
+                            name="vatRate"
+                            min="0"
+                            max="100"
+                            step="0.01"
+                            required
+                            value="20">
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">
+                        Ürünü Kaydet
+                    </button>
+
+                    <button type="reset" class="btn btn-secondary">
+                        Formu Temizle
+                    </button>
+                </div>
+            </form>
+        </section>
+
+        <!-- Ürün listesi -->
+        <section class="welcome">
+            <h2>Stoktaki Ürünler</h2>
+            <p>Kaydedilmiş ürünleri görüntüleyebilir ve yönetebilirsiniz.</p>
+        </section>
+
+        <section class="api-status">
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Sıra No</th>
+                            <th>Kategori</th>
+                            <th>Ürün adı</th>
+                            <th>Stok miktarı</th>
+                            <th>KDV Dâhil Satış fiyatı</th>
+                            <th>İşlemler</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="product-table-body">
+                        <tr>
+                            <td colspan="6">Ürünler yükleniyor...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p id="table-message" role="status" aria-live="polite"></p>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <p>Stok Takip Sistemi</p>
+    </footer>
+</body>
+</html>
