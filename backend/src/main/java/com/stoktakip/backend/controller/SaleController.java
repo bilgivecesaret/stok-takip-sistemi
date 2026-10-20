@@ -2,10 +2,9 @@ package com.stoktakip.backend.controller;
 
 import com.stoktakip.backend.entity.Sale;
 import com.stoktakip.backend.service.SaleService;
+import com.stoktakip.backend.dto.SaleRequest;
 
 import jakarta.validation.Valid;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Positive;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -124,12 +123,4 @@ public class SaleController {
             throw exception;
         }
     }
-
-    /**
-     * Satış isteğinin JSON veri yapısı.
-     */
-    public record SaleRequest(
-            @NotNull @Positive Long productId,
-            @NotNull @Positive Integer quantity
-    ) {  }
 }

@@ -88,6 +88,31 @@ public class ProductRequestService {
             );
         }
 
+        /*************************************/
+         // Aynı kategori ve ürün adına sahip talep var mı?
+        ProductRequest existingRequest =
+                productRequestRepository
+                        .findByCategoryIgnoreCaseAndProductNameIgnoreCase(
+                                category,
+                                productName
+                        )
+                        .orElse(null);
+
+        if (existingRequest != null) {
+
+            // Mevcut talep miktarını artır.
+            int updatedQuantity = Math.addExact(
+                    existingRequest.getRequestedQuantity(),
+                    requestedQuantity
+            );
+
+            existingRequest.setRequestedQuantity(updatedQuantity);
+
+            // Mevcut kaydı güncelle.
+            return productRequestRepository.save(existingRequest);
+        }
+        /**************************************/ 
+
         request.setCategory(category.trim());
         request.setProductName(productName.trim());
 
