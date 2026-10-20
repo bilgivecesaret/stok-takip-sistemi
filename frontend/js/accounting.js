@@ -240,6 +240,7 @@ async function loadAccounting() {
 
         const row = document.createElement("tr");
         const cell = createCell("Satış kayıtları yüklenemedi.");
+        cell.style.color = "#b42318";
         cell.colSpan = 8;
         row.appendChild(cell);
         accountingList.appendChild(row);

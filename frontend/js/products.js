@@ -1,8 +1,8 @@
 "use strict";
 
 // HTML elemanları
-const productForm = document.getElementById("product-form");
-const productTableBody = document.getElementById("product-table-body");
+const productForm = document.querySelector('form[class="product-form"');
+const productTableBody = document.querySelector('tbody[name="product-table-body"]');
 const formMessage = document.getElementById("form-message");
 const tableMessage = document.getElementById("table-message");
 
@@ -79,8 +79,6 @@ async function loadProducts() {
             return;
         }
 
-        //products.sort((a, b) => a.id - b.id);
-
         products.forEach((product, index) => {
             const row = document.createElement("tr");
 
@@ -140,9 +138,10 @@ async function loadProducts() {
         const row = document.createElement("tr");
         const cell = document.createElement("td");
 
-        cell.colSpan = 7;
+        cell.colSpan = 6;
         cell.textContent =
             "Ürünler yüklenemedi. Backend bağlantısını kontrol edin.";
+        cell.style.color = "#b42318";
 
         row.appendChild(cell);
         productTableBody.appendChild(row);

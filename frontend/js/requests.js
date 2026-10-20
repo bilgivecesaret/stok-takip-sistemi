@@ -19,11 +19,10 @@ function formatRequestDate(dateValue) {
 }
 
 // Kullanıcıya işlem mesajı gösterir.
-function showRequestMessage(message, type = "info", isError = false) {
+function showRequestMessage(message, isError = false) {
     const messageElement = document.getElementById("request-message");
 
     messageElement.textContent = message;
-    messageElement.dataset.type = type;
     messageElement.style.color = isError ? "#b42318" : "#18794e";
 }
 
@@ -93,13 +92,13 @@ async function loadRequests() {
 
         const row = document.createElement("tr");
         const cell = createRequestCell("Ürün talepleri yüklenemedi.");
+        cell.style.color = "#b42318";
         cell.colSpan = 6;
         row.appendChild(cell);
         tableBody.appendChild(row);
 
         showRequestMessage(
-            `Talep listesi yüklenirken hata oluştu: ${error.message}`,
-            "error", true
+            `Talep listesi yüklenirken hata oluştu: ${error.message}`, true
         );
     }
 }
@@ -119,19 +118,14 @@ async function createRequest(event) {
 
     if (!category || !productName) {
         showRequestMessage(
-            "Kategori ve ürün adı boş bırakılamaz.",
-            "error", true
+            "Kategori ve ürün adı boş bırakılamaz.", true
         );
         return;
     }
 
-    if (
-        !Number.isInteger(requestedQuantity) ||
-        requestedQuantity <= 0
-    ) {
+    if (!Number.isInteger(requestedQuantity) || requestedQuantity <= 0) {
         showRequestMessage(
-            "Talep miktarı pozitif bir tam sayı olmalıdır.",
-            "error", true
+            "Talep miktarı pozitif bir tam sayı olmalıdır.", true
         );
         quantityInput.focus();
         return;
@@ -150,8 +144,7 @@ async function createRequest(event) {
         });
 
         showRequestMessage(
-            `Ürün talebi başarıyla oluşturuldu.`,
-            "success", false
+            `Ürün talebi başarıyla oluşturuldu.`, false
         );
 
         document.getElementById("request-form").reset();
@@ -160,8 +153,7 @@ async function createRequest(event) {
 
     } catch (error) {
         showRequestMessage(
-            `Ürün talebi oluşturulamadı: ${error.message}`,
-            "error", true
+            `Ürün talebi oluşturulamadı: ${error.message}`, true
         );
     } finally {
         submitButton.disabled = false;
@@ -184,16 +176,14 @@ async function deleteRequest(request) {
         });
 
         showRequestMessage(
-            "Ürün talebi başarıyla silindi.",
-            "success", false
+            "Ürün talebi başarıyla silindi.", false
         );
 
         await loadRequests();
 
     } catch (error) {
         showRequestMessage(
-            `Ürün talebi silinemedi: ${error.message}`,
-            "error", true
+            `Ürün talebi silinemedi: ${error.message}`, true
         );
     }
 }

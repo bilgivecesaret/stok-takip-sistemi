@@ -15,11 +15,10 @@ function calculateVatIncludedPrice(salePrice, vatRate) {
 }
 
 // Kullanıcıya mesaj gösterir.
-function showSalesMessage(message, type = "info", isError = false) {
+function showSalesMessage(message, isError = false) {
     const messageElement = document.getElementById("sales-message");
 
     messageElement.textContent = message;
-    messageElement.dataset.type = type;
     messageElement.style.color = isError ? "#b42318" : "#18794e";
 }
 
@@ -121,20 +120,20 @@ async function loadSalesProducts() {
             tableBody.appendChild(row);
         });
 
-        showSalesMessage("Ürünler başarıyla yüklendi.", "success", false);
+        showSalesMessage("Ürünler başarıyla yüklendi.", false);
 
     } catch (error) {
         tableBody.replaceChildren();
 
         const row = document.createElement("tr");
         const cell = createCell("Ürünler yüklenemedi.");
+        cell.style.color = "#b42318";
         cell.colSpan = 8;
         row.appendChild(cell);
         tableBody.appendChild(row);
 
         showSalesMessage(
-            `Backend bağlantısı veya ürün yükleme hatası: ${error.message}`,
-            "error", true
+            `Backend bağlantısı veya ürün yükleme hatası: ${error.message}`, true
         );
     }
 }
@@ -175,7 +174,7 @@ function updateSalesSummary(productId) {
     document.getElementById("selected-total").textContent =
         formatCurrency(validQuantity ? unitPrice * quantity : 0);
 
-    showSalesMessage("", "info", false);
+    showSalesMessage("");
 }
 
 // Satış işlemini backend API'sine gönderir.
@@ -183,7 +182,7 @@ async function sellProduct(productId) {
     const product = products.find(item => item.id === productId);
 
     if (!product) {
-        showSalesMessage("Ürün bulunamadı.", "error", true);
+        showSalesMessage("Ürün bulunamadı.", true);
         return;
     }
 
@@ -194,7 +193,7 @@ async function sellProduct(productId) {
         );
 
         if (!createRequest) {
-            showSalesMessage("Ürün talebi oluşturulmadı.", "info", false);
+            showSalesMessage("Ürün talebi oluşturulmadı.", false);
             return;
         }
 
@@ -205,7 +204,7 @@ async function sellProduct(productId) {
 
         // Kullanıcı giriş penceresini iptal etti.
         if (requestedQuantity === null) {
-            showSalesMessage("Ürün talebi iptal edildi.", "info", false);
+            showSalesMessage("Ürün talebi iptal edildi.", false);
             return;
         }
 
@@ -213,14 +212,13 @@ async function sellProduct(productId) {
 
         if (!Number.isInteger(quantity) || quantity <= 0) {
             showSalesMessage(
-                "Talep miktarı pozitif bir tam sayı olmalıdır.",
-                "error", true
+                "Talep miktarı pozitif bir tam sayı olmalıdır.", true
             );
             return;
         }
 
         try {
-            showSalesMessage("Ürün talebi oluşturuluyor...", "info", false);
+            showSalesMessage("Ürün talebi oluşturuluyor...", false);
 
             const result = await createProductRequest({
                 category: product.category,
@@ -230,19 +228,21 @@ async function sellProduct(productId) {
 
             showSalesMessage(
                 `Ürün talebi başarıyla oluşturuldu. ` +
-                `Ürün: ${product.name}, Talep miktarı: ${quantity} adet.`,
-                "success", false
+                `Ürün: ${product.name}, Talep miktarı: ${quantity} adet.`, false
             );
 
             console.log("Oluşturulan ürün talebi:", result);
 
         } catch (error) {
             showSalesMessage(
-                `Ürün talebi oluşturulamadı: ${error.message}`,
-                "error", true
+                `Ürün talebi oluşturulamadı: ${error.message}`, true
             );
         }
 
+        alert(
+            `Ürün talebi başarıyla oluşturuldu. ` +
+            `Ürün: ${product.name}, Talep miktarı: ${quantity} adet.`
+        );
         return;
     }
 
@@ -252,8 +252,7 @@ async function sellProduct(productId) {
 
     if (!Number.isInteger(quantity) || quantity <= 0) {
         showSalesMessage(
-            "Satış miktarı pozitif bir tam sayı olmalıdır.",
-            "error", true
+            "Satış miktarı pozitif bir tam sayı olmalıdır.", true
         );
         quantityInput.focus();
         return;
@@ -261,8 +260,7 @@ async function sellProduct(productId) {
 
     if (quantity > product.stockQuantity) {
         showSalesMessage(
-            `Yetersiz stok! Mevcut stok: ${product.stockQuantity} adet.`,
-            "error", true
+            `Yetersiz stok! Mevcut stok: ${product.stockQuantity} adet.`, true
         );
         quantityInput.focus();
         return;
@@ -287,7 +285,7 @@ async function sellProduct(productId) {
     }
 
     try {
-        showSalesMessage("Satış işlemi gerçekleştiriliyor...", "info", false);
+        showSalesMessage("Satış işlemi gerçekleştiriliyor...", false);
 
         const result = await apiRequest("/sales", {
             method: "POST",
@@ -295,12 +293,7 @@ async function sellProduct(productId) {
                 productId: product.id,
                 quantity: quantity
             })
-        });
-
-        showSalesMessage(
-            `${result.message} Toplam: ${formatCurrency(result.vatIncludedTotal)}`,
-            "success", false
-        );
+        });      
 
         document.getElementById("selected-product").textContent =
             "Henüz ürün seçilmedi.";
@@ -311,14 +304,16 @@ async function sellProduct(productId) {
 
         await loadSalesProducts();
 
-    } catch (error) {
         showSalesMessage(
-            `Satış gerçekleştirilemedi: ${error.message}`,
-            "error", true
+            `${result.message} Toplam: ${formatCurrency(result.vatIncludedTotal)}`, false
         );
 
+    } catch (error) {
         // Stok başka bir işlem sırasında değişmiş olabilir.
         await loadSalesProducts();
+        showSalesMessage(
+            `Satış gerçekleştirilemedi: ${error.message}`, true
+        );
     }
 }
 
