@@ -27,6 +27,30 @@ Proje dört ana modülden oluşmaktadır:
    - Satış bilgilerini görüntüleme
    - Kâr hesaplarını takip etme
 
+## Uygulama Görselleri
+
+Aşağıdaki ekran görüntüleri, sistemin ana sayfa ve temel modüllerini görsel olarak özetlemektedir.
+
+### Ana Sayfa / Gösterge Paneli
+
+![Dashboard](./Screenshots/dashboard.png)
+
+### Ürün Yönetimi
+
+![Ürünler](./Screenshots/products.png)
+
+### Satış İşlemleri
+
+![Satışlar](./Screenshots/sales.png)
+
+### Ürün Talepleri
+
+![Ürün Talepleri](./Screenshots/product-requests.png)
+
+### Muhasebe / Hesaplama
+
+![Muhasebe](./Screenshots/accounting.png)
+
 ## Kullanılan Teknolojiler
 
 Projede kullanılan temel teknolojiler ve sürümleri aşağıda belirtilmiştir.
